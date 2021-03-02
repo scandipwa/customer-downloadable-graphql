@@ -1,0 +1,17 @@
+##
+# ScandiPWA_CustomerDownloadableGraphQl
+#
+# @category    ScandiPWA
+# @package     ScandiPWA_CustomerDownloadableGraphQl
+# @author      Daniels Stabulis <info@scandiweb.com>
+# @copyright   Copyright (c) 2018 Scandiweb, Ltd (https://scandiweb.com)
+##
+
+type Query {
+    customerDownloadableProducts: CustomerDownloadableProducts @resolver(class: "ScandiPWA\\CustomerDownloadableGraphQl\\Model\\Resolver\\CustomerDownloadableProducts") @doc(description: "The query returns the contents of a customer's downloadable products") @cache(cacheable: false)
+}
+
+type CustomerDownloadableProduct {
+    title: String
+    link_title: String
+}

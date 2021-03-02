@@ -1,0 +1,18 @@
+{
+    "name": "scandipwa/customer-downloadable-graphql",
+    "description": "Downloadable product support for ScandiPWA",
+    "type": "magento2-module",
+    "license": ["OSL-3.0"],
+    "require": {
+        "magento/framework": "*",
+        "magento/module-downloadable-graph-ql": "^100.4"
+    },
+    "autoload": {
+        "files": [
+            "src/registration.php"
+        ],
+        "psr-4": {
+            "ScandiPWA\\CustomerDownloadableGraphQl\\": "src/"
+        }
+    }
+}
