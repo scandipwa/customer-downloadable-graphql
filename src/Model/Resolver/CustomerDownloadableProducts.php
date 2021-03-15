@@ -20,6 +20,7 @@ use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\UrlInterface;
 use Magento\GraphQl\Model\Query\ContextInterface;
+use Magento\Sales\Model\Order;
 
 /**
  *
@@ -27,6 +28,11 @@ use Magento\GraphQl\Model\Query\ContextInterface;
  */
 class CustomerDownloadableProducts implements ResolverInterface
 {
+    const DOWNLOADABLE_STATUES = [
+        'available',
+        Order::STATE_COMPLETE
+    ];
+
     /**
      * @var GetPurchasedDownloadableProducts
      */
@@ -76,16 +82,22 @@ class CustomerDownloadableProducts implements ResolverInterface
                 $remainingDownloads = __('Unlimited');
             }
 
+            /* Generates download url only if customer has any available downloads left or order is accepted */
+            $downloadUrl = null;
+            if ($remainingDownloads != '0' && in_array($purchasedProduct['status'], self::DOWNLOADABLE_STATUES)) {
+                $downloadUrl = $this->urlBuilder->getUrl(
+                    'downloadable/download/link',
+                    ['id' => $purchasedProduct['link_hash'], '_secure' => true]
+                );
+            }
+
             $productsData[] = [
                 'order_increment_id' => $purchasedProduct['order_increment_id'],
                 'date' => $purchasedProduct['created_at'],
                 'status' => $purchasedProduct['status'],
                 'title' => $purchasedProduct['product_name'],
                 'link_title' => $purchasedProduct['link_title'],
-                'download_url' => $this->urlBuilder->getUrl(
-                    'downloadable/download/link',
-                    ['id' => $purchasedProduct['link_hash'], '_secure' => true]
-                ),
+                'download_url' => $downloadUrl,
                 'remaining_downloads' => $remainingDownloads
             ];
         }
