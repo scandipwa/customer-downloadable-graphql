@@ -24,7 +24,7 @@
     <virtualType name="ScandiPWA\Router\Controller\ConfigurableRouter" type="ScandiPWA\Router\Controller\Router">
         <arguments>
             <argument name="ignoredURLs" xsi:type="array">
-                <item name="downlodableProducts" xsi:type="string">^/downloadable/.*</item>
+                <item name="downlodableProducts" xsi:type="string">^/downloadable/download/.*</item>
             </argument>
         </arguments>
     </virtualType>
