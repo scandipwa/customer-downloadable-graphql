@@ -14,4 +14,5 @@ type Query {
 type CustomerDownloadableProduct {
     title: String
     link_title: String
+    order_id: Int
 }

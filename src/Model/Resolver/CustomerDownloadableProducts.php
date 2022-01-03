@@ -92,6 +92,7 @@ class CustomerDownloadableProducts implements ResolverInterface
             }
 
             $productsData[] = [
+                'order_id' => $purchasedProduct['order_id'],
                 'order_increment_id' => $purchasedProduct['order_increment_id'],
                 'date' => explode(' ', $purchasedProduct['created_at'])[0],
                 'status' => $purchasedProduct['status'],
