@@ -96,7 +96,7 @@ class Link extends SourceLink
         $status = $linkPurchasedItem->getStatus();
 
         // can add $status === PurchasedLink::LINK_STATUS_AVAILABLE && for his 'if', if there are some errors
-        if (($downloadsLeft || $linkPurchasedItem->getNumberOfDownloadsBought() === 0)) {
+        if (($downloadsLeft || $linkPurchasedItem->getNumberOfDownloadsBought() == 0)) {
             $resource = '';
             $resourceType = '';
             if ($linkPurchasedItem->getLinkType() === DownloadHelper::LINK_TYPE_URL) {
